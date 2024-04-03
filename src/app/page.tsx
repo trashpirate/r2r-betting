@@ -21,7 +21,7 @@ export default function Home() {
       <div className="text-lg flex flex-col justify-center text-center mt-16 mb-10 bg-white/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto">
         <h1 className="my-4 text-3xl font-bold text-highlight">FLAMELING BET</h1>
         <h1 className="my-4">When is the last time you and a friend settled an arguement with a small wager?</h1>
-        <div className="my-4">Welcome to FlamelingBet where where you can tell your friend "Ha, told you so!"</div>
+        <div className="my-4">Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;</div>
         <div className="my-4">Each Game you pick a side, you either bet with Rug$ (0x222) or you bet with Riche$ (0x237). It is simple; if you think Rug$ is right simply send him 1 millon 0x222 tokens. If you think Riches is right simply send him 1 millon 0x237 tokens.</div>
       </div>
       <div className="text-lg flex flex-col justify-center text-center my-10 bg-white/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto">

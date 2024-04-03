@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Flameling Bet",
-  description: "Welcome to FlamelingBet where where you can tell your friend \"Ha, told you so!\"",
+  description: "Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;",
   applicationName: "Flameling Bet",
   twitter: {
     card: "summary_large_image",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://flamelingbets.com",
     title: "Flameling Bet",
-    description: "Welcome to FlamelingBet where where you can tell your friend \"Ha, told you so!\"",
+    description: "Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;",
     siteName: "Flameling Bet",
     images: [
       {
