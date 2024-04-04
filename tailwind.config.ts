@@ -17,6 +17,7 @@ const config: Config = {
         glow: "0 35px 60px -15px rgba(255,107,16, 1)",
       },
       fontFamily: {
+        limelight: ["limelight", "sans-serif"],
         body: ["IBM Plex Sans"],
       },
       screens: {
@@ -26,7 +27,7 @@ const config: Config = {
       colors: {
         primary: "#000000",
         highlight: "#67e8f9",
-        background: "#4c1d95",
+        background: "#26005A",
       },
       maxHeight: {
         maxH192: "30rem",
