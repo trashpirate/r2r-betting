@@ -27,7 +27,7 @@ const config: Config = {
       colors: {
         primary: "#000000",
         highlight: "#67e8f9",
-        background: "#0D051A",
+        background: "#07020F",
       },
       maxHeight: {
         maxH192: "30rem",
