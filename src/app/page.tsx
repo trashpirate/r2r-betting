@@ -32,7 +32,7 @@ export default function Home() {
           />
           <div className="text-xl px-4 lg:px-8 ">
             <h1 className="mt-8 mb-4 text-4xl ">When is the last time you and a friend settled an arguement with a small wager?</h1>
-            <div className="my-4 text-3xl text-indigo-300">Welcome to FlamelingBets where where you can tell your friend &quot;Ha, told you so!&quot;</div>
+            <div className="my-4 text-3xl text-indigo-300"><div>Welcome to FlamelingBets where you can tell your friend</div><div>&quot;Ha, told you so!&quot;</div></div>
             <div className="my-4 text-highlight text-3xl flex flex-col">
               <div className="text-left sm:text-center ml-6 sm:ml-none">It is simple:</div>
               <div className="mx-auto p-4">
