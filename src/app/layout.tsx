@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Limelight } from "next/font/google";
+import { Inter, Fjalla_One, Francois_One, Limelight, Black_Han_Sans, Londrina_Solid, Lalezar, Viga, Rubik_Mono_One, Luckiest_Guy, Concert_One } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const defaultFont = Concert_One({ subsets: ["latin"], weight: ['400'] });
 
 export const metadata: Metadata = {
   title: "Flameling Bet",
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={defaultFont.className}>{children}</body>
     </html>
   );
 }

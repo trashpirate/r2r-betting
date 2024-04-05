@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/navbar";
 import Team from "../components/team";
-import { limelight } from './fonts'
+import { limelight, fjalla } from './fonts'
 
 const TEAM222_ADDRESS = "0xB9A5869Cf215aA9e15eeaE4AA06d8AcB928341e2";
 const TEAM237_ADDRESS = "0x69967F2129a2cCE02AEB647A31573b93f59cD4a2";
@@ -25,20 +25,23 @@ export default function Home() {
             src="/banner.jpg"
             alt="Flameling bets"
             className="rounded-lg w-full h-auto "
-            width={50}
-            height={50}
+            width={1800}
+            height={600}
             priority
           />
-          <h1 className="mt-8 mb-4">When is the last time you and a friend settled an arguement with a small wager?</h1>
-          <div className="my-4">Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;</div>
-          <div className="my-4">Each Game you pick a side, you either bet with Rug$ (0x222) or you bet with Riche$ (0x237). It is simple; if you think Rug$ is right simply send him 1 millon 0x222 tokens. If you think Riches is right simply send him 1 millon 0x237 tokens.</div>
+          <div className="text-xl">
+            <h1 className="mt-8 mb-4 text-3xl ">When is the last time you and a friend settled an arguement with a small wager?</h1>
+            <div className="my-4 text-2xl text-pink-200">Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;</div>
+            <div className="my-4 text-pink-300">Each Game you pick a side, you either bet with Rug$ (0x222) or you bet with Riche$ (0x237). It is simple; if you think Rug$ is right simply send him 1 millon 0x222 tokens. If you think Riches is right simply send him 1 millon 0x237 tokens.</div>
+          </div>
+
         </div>
-        <div className="text-7xl flex flex-col justify-center text-center my-10 bg-white/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto font-limelight">
-          <h1 className={limelight.className}>Current Bet</h1>
+        <div className="text-5xl sm:text-7xl flex flex-col justify-center text-center my-10 bg-white/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto font-limelight font-outline-2">
+          <h1 className={limelight.className}>TYSON VS JAKE</h1>
         </div>
         <div className="flex flex-col lg:flex-row justify-center md:justify-between h-full w-full gap-10 mx-auto my-10">
-          <Team name="Rug$ (0X222)" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif"></Team>
-          <Team name="Riche$ (0X237)" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif"></Team>
+          <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif"></Team>
+          <Team name="Riche$" ticker="X237" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif"></Team>
         </div>
       </section>
 

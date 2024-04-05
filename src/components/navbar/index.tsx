@@ -14,7 +14,7 @@ type Props = {
 
 export default function Navbar({ ticker1, ticker2, ca1, ca2 }: Props) {
     return (
-        <nav className="h-20 top-0 fixed py-3 flex justify-between gap-5 align-middle w-full bg-white/20 backdrop-blur px-8 xl:px-64">
+        <nav className="h-20 top-0 fixed py-3 flex justify-between gap-2 align-middle w-full bg-white/20 backdrop-blur px-4 xs:px-8 xl:px-64">
 
             <Link href="https://buyholdearn.com" className='my-auto h-full'>
                 <Image
