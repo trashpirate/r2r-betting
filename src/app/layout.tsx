@@ -5,9 +5,9 @@ import "./globals.css";
 const defaultFont = Concert_One({ subsets: ["latin"], weight: ['400'] });
 
 export const metadata: Metadata = {
-  title: "Flameling Bet",
+  title: "Flameling Bets",
   description: "Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;",
-  applicationName: "Flameling Bet",
+  applicationName: "Flameling Bets",
   twitter: {
     card: "summary_large_image",
     site: "flamelingbets.com",
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://flamelingbets.com",
-    title: "Flameling Bet",
+    title: "Flameling Bets",
     description: "Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;",
-    siteName: "Flameling Bet",
+    siteName: "Flameling Bets",
     images: [
       {
         url: "https://flamelingbets.com/banner.jpg",
