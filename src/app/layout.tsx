@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "flamelingbets.com",
     creator: "@flamelingbets",
-    images: "https://flamelingbets.com/logo.jpg",
+    images: "https://flamelingbets.com/banner.jpg",
   },
   openGraph: {
     type: "website",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Flameling Bet",
     images: [
       {
-        url: "https://flamelingbets.com/logo.jpg",
+        url: "https://flamelingbets.com/banner.jpg",
       },
     ],
   },
