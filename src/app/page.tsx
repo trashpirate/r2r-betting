@@ -39,7 +39,7 @@ export default function Home() {
                 <ol className="list-decimal text-left text-2xl">
                   <li className="ml-8">Pick a side</li>
                   <li className="ml-8">If you are team Rug$, send 1 Million Ox222 to his address.</li>
-                  <li className="ml-8">If you are team Riches, send 1 Million 0x237 to his address.</li>
+                  <li className="ml-8">If you are team Riche$, send 1 Million 0x237 to his address.</li>
                   <li className="ml-8">If your team wins you recieve BNB back to your wallet!</li>
                 </ol>
               </div>
