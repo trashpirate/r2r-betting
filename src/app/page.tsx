@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/navbar";
 import Team from "../components/team";
-import { limelight, fjalla } from './fonts'
+import { limelight } from './fonts'
 import Footer from "@/components/footer";
 
 const TEAM222_ADDRESS = "0xB9A5869Cf215aA9e15eeaE4AA06d8AcB928341e2";
@@ -19,18 +19,18 @@ export default function Home() {
     <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
 
       <Navbar ticker1="OX222" ticker2="0X237" ca1={TEAM222_CA} ca2={TEAM237_CA}></Navbar>
-      <section className="px-8 xl:px-64 scroll-m-36 mt-16 mb-36">
-        <div className="text-lg flex flex-col justify-center text-center mt-16 mb-10 bg-white/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto">
+      <section className="px-4 xl:px-64 scroll-m-36 mt-16 mb-24">
+        <div className="text-lg flex flex-col justify-center text-center mt-16 mb-10 bg-white/10 p-4 lg:p-8 rounded-3xl max-w-[800px] mx-auto">
           {/* <h1 className="my-4 text-3xl font-bold text-highlight">FLAMELING BET</h1> */}
           <Image
             src="/banner.jpg"
             alt="Flameling bets"
-            className="rounded-lg w-full h-auto "
+            className="rounded-xl w-full h-auto "
             width={1800}
             height={600}
             priority
           />
-          <div className="text-xl">
+          <div className="text-xl px-4 lg:px-8 ">
             <h1 className="mt-8 mb-4 text-3xl ">When is the last time you and a friend settled an arguement with a small wager?</h1>
             <div className="my-4 text-2xl text-pink-200">Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;</div>
             <div className="my-4 text-pink-300">Each Game you pick a side, you either bet with Rug$ (0x222) or you bet with Riche$ (0x237). It is simple; if you think Rug$ is right simply send him 1 millon 0x222 tokens. If you think Riches is right simply send him 1 millon 0x237 tokens.</div>
