@@ -34,7 +34,7 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
             </div>
 
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
-                <div className="mx-auto my-4  text-xl">Contract Address</div>
+                <div className="mx-auto my-4  text-xl">{`${ticker} Contract Address`}</div>
                 <CopyToClipboard text={ca} copyText={ca} textColor="text-highlight" textSize="text-md" iconSize="text-[10px]"></CopyToClipboard>
             </div>
 
