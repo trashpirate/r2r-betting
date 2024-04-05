@@ -2,6 +2,7 @@ import Image from "next/image";
 import Navbar from "../components/navbar";
 import Team from "../components/team";
 import { limelight, fjalla } from './fonts'
+import Footer from "@/components/footer";
 
 const TEAM222_ADDRESS = "0xB9A5869Cf215aA9e15eeaE4AA06d8AcB928341e2";
 const TEAM237_ADDRESS = "0x69967F2129a2cCE02AEB647A31573b93f59cD4a2";
@@ -15,10 +16,10 @@ const TEAM237_PAIR = "0xbee0d2e7172aa4fcfbe2fa6a30bf1af973df0204";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll pb-36  text-white bg-blend-darken bg-background ">
+    <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
 
       <Navbar ticker1="OX222" ticker2="0X237" ca1={TEAM222_CA} ca2={TEAM237_CA}></Navbar>
-      <section className="px-8 xl:px-64 scroll-m-36 mt-16">
+      <section className="px-8 xl:px-64 scroll-m-36 mt-16 mb-36">
         <div className="text-lg flex flex-col justify-center text-center mt-16 mb-10 bg-white/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto">
           {/* <h1 className="my-4 text-3xl font-bold text-highlight">FLAMELING BET</h1> */}
           <Image
@@ -45,7 +46,7 @@ export default function Home() {
         </div>
       </section>
 
-
+      <Footer></Footer>
     </main>
   );
 }
