@@ -29,7 +29,7 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
                 priority
             />
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
-                <div className="mx-auto mt-2 text-xl uppercase">{`Wins: 0`}</div>
+                <div className="mx-auto mt-2 text-xl uppercase">Total wins: 0</div>
             </div>
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
                 <div className="mx-auto my-4 text-xl">{`${name}' Wallet Address`}</div>
