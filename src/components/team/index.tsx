@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CopyToClipboard from "../copyToClipboard";
 import ChartButton from "../chartButton";
-import { teamNameFont } from "@/app/fonts";
+import { limelight, teamNameFont } from "@/app/fonts";
 type Props = {
     name: string;
     ticker: string;
@@ -15,10 +15,10 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
 
 
     return (
-        <div className="flex flex-col h-full max-w-[500px] w-full mx-auto justify-center bg-white/10 p-8 rounded-3xl border-2 border-highlight text-center">
+        <div className="flex flex-col h-full max-w-[500px] w-full mx-auto justify-center bg-violet-500/10 p-8 rounded-3xl border-2 border-highlight text-center">
             <div className="mx-auto mt-10 mb-4 text-5xl font-bold text-white">
-                <div className={teamNameFont.className}>{`TEAM ${name}`}</div>
-                <div className={teamNameFont.className}>{`(${ticker})`}</div>
+                <div className={limelight.className}>{`TEAM ${name}`}</div>
+                <div className={limelight.className}>{`(${ticker})`}</div>
             </div>
             <Image
                 src={img}
@@ -29,7 +29,10 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
                 priority
             />
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
-                <div className="mx-auto my-4 text-xl">{`${name}'s Wallet Address`}</div>
+                <div className="mx-auto mt-2 text-xl uppercase">{`Wins: 0`}</div>
+            </div>
+            <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
+                <div className="mx-auto my-4 text-xl">{`${name}' Wallet Address`}</div>
                 <CopyToClipboard text={wallet} copyText={wallet} textColor="text-highlight" textSize="text-md" iconSize="text-[10px]"></CopyToClipboard>
             </div>
 

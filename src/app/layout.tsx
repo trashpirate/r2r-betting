@@ -6,7 +6,7 @@ const defaultFont = Concert_One({ subsets: ["latin"], weight: ['400'] });
 
 export const metadata: Metadata = {
   title: "Flameling Bets",
-  description: "Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;",
+  description: "Welcome to FlamelingBets where where you can tell your friend &quot;Ha, told you so!&quot;",
   applicationName: "Flameling Bets",
   twitter: {
     card: "summary_large_image",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://flamelingbets.com",
     title: "Flameling Bets",
-    description: "Welcome to FlamelingBet where where you can tell your friend &quot;Ha, told you so!&quot;",
+    description: "Welcome to FlamelingBets where where you can tell your friend &quot;Ha, told you so!&quot;",
     siteName: "Flameling Bets",
     images: [
       {
