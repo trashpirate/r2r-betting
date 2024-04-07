@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "flamelingbets.com",
-    creator: "@flamelingbets",
+    creator: "@Rugs_2_Riches",
     images: "https://flamelingbets.com/banner.jpg",
   },
   openGraph: {
