@@ -56,6 +56,7 @@ export default function Home() {
         </div>
         <div className="text-4xl xs:text-5xl sm:text-7xl flex flex-col justify-center text-center my-10 bg-violet-500/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto">
           <div className="text-2xl text-highlight mb-4 uppercase">Men&apos;s College Basketball Championship</div>
+          <div className="text-2xl text-highlight mb-4 uppercase">04/08/24 8PM EST</div>
           <div className="text-red-600 flex justify-center align-bottom  font-limelight font-outline-2"><h1 className={limelight.className}>UCONN</h1><div className={limelight.className + "  text-xl xs:text-2xl mb-0 mt-auto"}>(Rug$)</div></div>
           <div><h1 className={limelight.className + " font-limelight font-outline-2"}>VRS</h1></div>
           <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>PURDUE</h1><div className={limelight.className + " text-xl xs:text-2xl mb-0 mt-auto"}>(Riche$)</div></div>
