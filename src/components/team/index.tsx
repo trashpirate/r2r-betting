@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import CopyToClipboard from "../copyToClipboard";
 import ChartButton from "../chartButton";
-import { limelight, teamNameFont } from "@/app/fonts";
+import { limelight } from "@/app/fonts";
+import { useEffect, useState } from "react";
 type Props = {
     name: string;
     ticker: string;
@@ -13,10 +15,32 @@ type Props = {
 
 export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
 
+    const [rugsBalance, setRugsBalance] = useState<number>(0);
+    const [richesBalance, setRichesBalance] = useState<number>(0);
 
+    function getWalletStatus() {
+        fetch("/api/bets").then(response => response.json()).then(data => {
+            setRugsBalance(Math.floor(data.rugs));
+            setRichesBalance(Math.floor(data.riches));
+        });
+    }
+
+    useEffect(() => {
+        getWalletStatus();
+    }, [])
+
+    useEffect(() => {
+
+        getWalletStatus();
+        const interval = setInterval(() => {
+            getWalletStatus()
+        }, 60000);
+
+        return () => clearInterval(interval);
+    }, []);
     return (
         <div className="flex flex-col h-full max-w-[500px] w-full mx-auto justify-center bg-violet-500/10 p-8 rounded-3xl border-2 border-highlight text-center">
-            <div className={`mx-auto mt-10 mb-4 text-5xl font-bold font-limelight font-outline-1 ${ticker == '0X222' ? "text-red-600" : "text-yellow-400"}`}>
+            <div className={`mx-auto mt-10 mb-4 text-4xl xs:text-5xl font-bold font-limelight font-outline-1 ${ticker == '0X222' ? "text-red-600" : "text-yellow-400"}`}>
                 <div className={limelight.className}>{`TEAM ${name}`}</div>
                 <div className={limelight.className}>{`(${ticker})`}</div>
             </div>
@@ -28,11 +52,15 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
                 height={40}
                 priority
             />
-            <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
+            <div className="flex flex-col justify-center mx-auto">
                 <div className="mx-auto mt-2 text-xl uppercase">Total wins: 0</div>
             </div>
+
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
                 <div className="mx-auto my-4 text-xl">{`${name}' Wallet Address`}</div>
+                <div className="flex flex-col justify-center mx-auto text-highlight">
+                    <div className="mx-auto text-lg flex gap-2 "><div >Balance:</div><div>{ticker == '0X222' ? `${rugsBalance.toLocaleString()} $0X222` : `${richesBalance.toLocaleString()} $0X222`}</div></div>
+                </div>
                 <CopyToClipboard text={wallet} copyText={wallet} textColor="text-highlight" textSize="text-md" iconSize="text-[10px]"></CopyToClipboard>
             </div>
 

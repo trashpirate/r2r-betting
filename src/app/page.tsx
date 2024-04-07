@@ -1,8 +1,11 @@
+"use client";
 import Image from "next/image";
 import Navbar from "../components/navbar";
 import Team from "../components/team";
 import { limelight } from './fonts'
 import Footer from "@/components/footer";
+import { useEffect, useState } from "react";
+
 
 const TEAM222_ADDRESS = "0xB9A5869Cf215aA9e15eeaE4AA06d8AcB928341e2";
 const TEAM237_ADDRESS = "0x69967F2129a2cCE02AEB647A31573b93f59cD4a2";
@@ -15,6 +18,8 @@ const TEAM237_PAIR = "0xbee0d2e7172aa4fcfbe2fa6a30bf1af973df0204";
 
 
 export default function Home() {
+
+
 
   return (
     <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
@@ -49,10 +54,10 @@ export default function Home() {
           </div>
 
         </div>
-        <div className="text-5xl sm:text-7xl flex flex-col justify-center text-center my-10 bg-violet-500/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto font-limelight font-outline-2">
-          <div className="text-red-600"><h1 className={limelight.className}>UCONN</h1></div>
+        <div className="text-4xl xs:text-5xl sm:text-7xl flex flex-col justify-center text-center my-10 bg-violet-500/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto font-limelight font-outline-2">
+          <div className="text-red-600 flex justify-center align-bottom"><h1 className={limelight.className}>UCONN</h1><div className={limelight.className + "  text-xl xs:text-2xl mb-0 mt-auto"}>(Rug$)</div></div>
           <div><h1 className={limelight.className}>VRS</h1></div>
-          <div className="text-yellow-400"><h1 className={limelight.className}>PURDUE</h1></div>
+          <div className="text-yellow-400 flex  justify-center"><h1 className={limelight.className}>PURDUE</h1><div className={limelight.className + " text-xl xs:text-2xl mb-0 mt-auto"}>(Riche$)</div></div>
         </div>
         <div className="flex flex-col lg:flex-row justify-center md:justify-between h-full w-full gap-10 mx-auto my-10">
           <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif"></Team>
