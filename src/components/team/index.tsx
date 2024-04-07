@@ -20,8 +20,8 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
 
     function getWalletStatus() {
         fetch("/api/bets").then(response => response.json()).then(data => {
-            setRugsBalance(Math.floor(data.rugs));
-            setRichesBalance(Math.floor(data.riches));
+            setRugsBalance(Math.floor(data.rugs / 1000000));
+            setRichesBalance(Math.floor(data.riches / 1000000));
         });
     }
 
@@ -58,8 +58,8 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
 
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
                 <div className="mx-auto my-4 text-xl">{`${name}' Wallet Address`}</div>
-                <div className="flex flex-col justify-center mx-auto text-highlight">
-                    <div className="mx-auto text-lg flex gap-2 "><div >Balance:</div><div>{ticker == '0X222' ? `${rugsBalance.toLocaleString()} $0X222` : `${richesBalance.toLocaleString()} $0X222`}</div></div>
+                <div className="flex justify-center mx-auto text-highlight ">
+                    <div className="mx-auto text-lg flex flex-row gap-2 flex-wrap justify-center"><div >Balance:</div><div>{ticker == '0X222' ? `${rugsBalance.toLocaleString()} M $0X222` : `${richesBalance.toLocaleString()} M $0X222`}</div></div>
                 </div>
                 <CopyToClipboard text={wallet} copyText={wallet} textColor="text-highlight" textSize="text-md" iconSize="text-[10px]"></CopyToClipboard>
             </div>
