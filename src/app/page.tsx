@@ -15,6 +15,7 @@ const TEAM237_PAIR = "0xbee0d2e7172aa4fcfbe2fa6a30bf1af973df0204";
 
 
 export default function Home() {
+
   return (
     <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
 
@@ -49,9 +50,9 @@ export default function Home() {
 
         </div>
         <div className="text-5xl sm:text-7xl flex flex-col justify-center text-center my-10 bg-violet-500/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto font-limelight font-outline-2">
-          <h1 className={limelight.className}>TYSON</h1>
-          <h1 className={limelight.className}>VRS</h1>
-          <h1 className={limelight.className}>JAKE PAUL</h1>
+          <div className="text-red-700"><h1 className={limelight.className}>UCONN</h1></div>
+          <div><h1 className={limelight.className}>VRS</h1></div>
+          <div className="text-yellow-500"><h1 className={limelight.className}>PURDUE</h1></div>
         </div>
         <div className="flex flex-col lg:flex-row justify-center md:justify-between h-full w-full gap-10 mx-auto my-10">
           <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif"></Team>
