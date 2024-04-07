@@ -6,7 +6,7 @@ import { flamelingABI } from "@/assets/flamelingTokenABI";
 import { createPublicClient, http } from "viem";
 import { bsc } from "viem/chains";
 
-const TEAM222_ADDRESS = "0xB9A5869Cf215aA9e15eeaE4AA06d8AcB928341e2";
+const TEAM222_ADDRESS = "0x4042929BB30B7caC0c8a22b42d327b20f020e144";
 const TEAM237_ADDRESS = "0x69967F2129a2cCE02AEB647A31573b93f59cD4a2";
 
 const TEAM222_CA = "0x85063a8c52c81f8c270d10bc2056d5e703157de4";
