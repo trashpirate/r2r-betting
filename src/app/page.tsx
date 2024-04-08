@@ -48,7 +48,7 @@ export default function Home() {
 
     if (rugsBalance !== undefined && richesBalance !== undefined) {
       const ratio = rugsBalance / richesBalance;
-      oddsString = `${ratio.toFixed(1).toLocaleString()} : 1.0`
+      oddsString = `${ratio.toFixed(1).toLocaleString()}`
     }
     else {
       oddsString = "--";
@@ -97,9 +97,14 @@ export default function Home() {
           <div className="text-red-600 flex justify-center align-bottom  font-limelight font-outline-2"><h1 className={limelight.className}>UCONN</h1><div className={limelight.className + "  text-xl xs:text-2xl mb-0 mt-auto"}>(Rug$)</div></div>
           <div><h1 className={limelight.className + " font-limelight font-outline-2"}>VRS</h1></div>
           <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>PURDUE</h1><div className={limelight.className + " text-xl xs:text-2xl mb-0 mt-auto"}>(Riche$)</div></div>
-          <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4">
-            <div className="text-2xl text-white uppercase">Betting Odds</div>
-            <div className="text-2xl">{getOdds()}</div>
+          <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4 text-center flex flex-col">
+            <div className="text-3xl text-white uppercase">Betting Odds</div>
+            <div className="flex flex-row text-3xl mx-auto align-middle">
+              <div className="text-red-600 my-auto">{getOdds()}</div>
+              <div className="px-2  my-auto">:</div>
+              <div className="text-yellow-400  my-auto">1.0</div>
+            </div>
+
           </div>
         </div>
         <div className="flex flex-col lg:flex-row justify-center md:justify-between h-full w-full gap-10 mx-auto my-10">
