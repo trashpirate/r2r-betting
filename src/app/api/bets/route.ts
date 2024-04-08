@@ -22,27 +22,27 @@ const client = createPublicClient({
 export async function GET() {
   let rugs_balance: number | undefined = undefined;
   let riches_balance: number | undefined = undefined;
-  const data = await client.multicall({
-    contracts: [
-      {
-        address: TEAM222_CA,
-        abi: flamelingABI,
-        functionName: "balanceOf",
-        args: [TEAM222_ADDRESS],
-      },
-      {
-        address: TEAM237_CA,
-        abi: flamelingABI,
-        functionName: "balanceOf",
-        args: [TEAM237_ADDRESS],
-      },
-    ],
+
+  const data_rugs = await client.readContract({
+    address: TEAM222_CA,
+    abi: flamelingABI,
+    functionName: "balanceOf",
+    args: [TEAM222_ADDRESS],
   });
 
-  if (data[0].status == "success" && data[1].status == "success") {
-    rugs_balance = Number(formatEther(data[0].result));
-    riches_balance = Number(formatEther(data[1].result));
-  }
+  // console.log(data_rugs);
+
+  const data_riches = await client.readContract({
+    address: TEAM237_CA,
+    abi: flamelingABI,
+    functionName: "balanceOf",
+    args: [TEAM237_ADDRESS],
+  });
+
+  // console.log(data_riches);
+
+  rugs_balance = Number(formatEther(data_rugs));
+  riches_balance = Number(formatEther(data_riches));
 
   return NextResponse.json(
     { rugs: rugs_balance, riches: riches_balance },
