@@ -11,54 +11,20 @@ type Props = {
     pair: string;
     img: string;
     wallet: string;
+    balance: number;
 }
 
-export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
+export default function Team({ name, ticker, ca, pair, wallet, img, balance }: Props) {
 
-    const [rugsBalance, setRugsBalance] = useState<number>(0);
-    const [richesBalance, setRichesBalance] = useState<number>(0);
-
-    function getWalletStatus() {
-        fetch("/api/bets").then(response => response.json()).then(data => {
-            setRugsBalance((data.rugs));
-            setRichesBalance((data.riches));
-        });
-    }
-
-    useEffect(() => {
-        getWalletStatus();
-    }, [])
-
-    useEffect(() => {
-
-        getWalletStatus();
-        const interval = setInterval(() => {
-            getWalletStatus()
-        }, 60000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    function getBalance(ticker: string) {
+    function getBalance() {
         let balanceString: string = "--";
 
-        if (ticker == '0X222') {
-            if (rugsBalance !== undefined) {
-                const mBalance = rugsBalance / 1000000;
-                balanceString = `${mBalance.toFixed(1).toLocaleString()} M`
-            }
-            else {
-                balanceString = "--";
-            }
+        if (balance !== undefined) {
+            const mBalance = balance / 1000000;
+            balanceString = `${mBalance.toFixed(1).toLocaleString()} M`
         }
         else {
-            if (richesBalance !== undefined) {
-                const mBalance = richesBalance / 1000000;
-                balanceString = `${mBalance.toFixed(1).toLocaleString()} M`
-            }
-            else {
-                balanceString = "--";
-            }
+            balanceString = "--";
         }
         return balanceString;
     }
@@ -85,7 +51,7 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
                 <div className="mx-auto my-4 text-xl">{`${name}' Wallet Address`}</div>
                 <div className="flex justify-center mx-auto text-highlight ">
-                    <div className="mx-auto text-lg flex flex-row gap-2 flex-wrap justify-center"><div >Balance:</div><div>{getBalance(ticker)}</div></div>
+                    <div className="mx-auto text-lg flex flex-row gap-2 flex-wrap justify-center"><div >Balance:</div><div>{getBalance()}</div></div>
                 </div>
                 <CopyToClipboard text={wallet} copyText={wallet} textColor="text-highlight" textSize="text-md" iconSize="text-[10px]"></CopyToClipboard>
             </div>
