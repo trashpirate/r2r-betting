@@ -19,7 +19,42 @@ const TEAM237_PAIR = "0xbee0d2e7172aa4fcfbe2fa6a30bf1af973df0204";
 
 export default function Home() {
 
+  const [rugsBalance, setRugsBalance] = useState<number>(0);
+  const [richesBalance, setRichesBalance] = useState<number>(0);
 
+  function getWalletStatus() {
+    fetch("/api/bets").then(response => response.json()).then(data => {
+      setRugsBalance((data.rugs));
+      setRichesBalance((data.riches));
+    });
+  }
+
+  useEffect(() => {
+    getWalletStatus();
+  }, [])
+
+  useEffect(() => {
+
+    getWalletStatus();
+    const interval = setInterval(() => {
+      getWalletStatus()
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  function getOdds() {
+    let oddsString: string = "--";
+
+    if (rugsBalance !== undefined && richesBalance !== undefined) {
+      const ratio = rugsBalance / richesBalance;
+      oddsString = `${ratio.toFixed(1).toLocaleString()} : 1.0`
+    }
+    else {
+      oddsString = "--";
+    }
+    return oddsString;
+  }
 
   return (
     <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
@@ -57,13 +92,19 @@ export default function Home() {
         <div className="text-4xl xs:text-5xl sm:text-7xl flex flex-col justify-center text-center my-10 bg-violet-500/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto">
           <div className="text-2xl text-highlight mb-4 uppercase">Men&apos;s College Basketball Championship</div>
           <div className="text-xl text-highlight mb-4 uppercase">04/08/24 8PM EST</div>
+
+
           <div className="text-red-600 flex justify-center align-bottom  font-limelight font-outline-2"><h1 className={limelight.className}>UCONN</h1><div className={limelight.className + "  text-xl xs:text-2xl mb-0 mt-auto"}>(Rug$)</div></div>
           <div><h1 className={limelight.className + " font-limelight font-outline-2"}>VRS</h1></div>
           <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>PURDUE</h1><div className={limelight.className + " text-xl xs:text-2xl mb-0 mt-auto"}>(Riche$)</div></div>
+          <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4">
+            <div className="text-2xl text-white uppercase">Betting Odds</div>
+            <div className="text-2xl">{getOdds()}</div>
+          </div>
         </div>
         <div className="flex flex-col lg:flex-row justify-center md:justify-between h-full w-full gap-10 mx-auto my-10">
-          <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif"></Team>
-          <Team name="Riche$" ticker="0X237" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif"></Team>
+          <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif" balance={rugsBalance}></Team>
+          <Team name="Riche$" ticker="0X237" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif" balance={richesBalance}></Team>
         </div>
       </section>
 
