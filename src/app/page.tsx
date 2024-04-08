@@ -98,8 +98,8 @@ export default function Home() {
           <div><h1 className={limelight.className + " font-limelight font-outline-2"}>VRS</h1></div>
           <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>PURDUE</h1><div className={limelight.className + " text-xl xs:text-2xl mb-0 mt-auto"}>(Riche$)</div></div>
           <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4 text-center flex flex-col">
-            <div className="text-3xl text-white uppercase">Betting Odds</div>
-            <div className="flex flex-row text-3xl mx-auto align-middle">
+            <div className="text-2xl xs:text-3xl text-white uppercase">Betting Odds</div>
+            <div className="flex flex-row text-2xl xs:text-3xl mx-auto align-middle">
               <div className="text-red-600 my-auto">{getOdds()}</div>
               <div className="px-2  my-auto">:</div>
               <div className="text-yellow-400  my-auto">1.0</div>
