@@ -20,8 +20,8 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
 
     function getWalletStatus() {
         fetch("/api/bets").then(response => response.json()).then(data => {
-            setRugsBalance((data.rugs / 1000000));
-            setRichesBalance((data.riches / 1000000));
+            setRugsBalance((data.rugs));
+            setRichesBalance((data.riches));
         });
     }
 
@@ -38,6 +38,32 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
 
         return () => clearInterval(interval);
     }, []);
+
+    function getBalance(ticker: string) {
+        let balanceString: string = "--";
+
+        if (ticker == '0X222') {
+            if (rugsBalance !== undefined) {
+                const mBalance = rugsBalance / 1000000;
+                balanceString = `${mBalance.toFixed(1).toLocaleString()} M`
+            }
+            else {
+                balanceString = "--";
+            }
+        }
+        else {
+            if (richesBalance !== undefined) {
+                const mBalance = richesBalance / 1000000;
+                balanceString = `${mBalance.toFixed(1).toLocaleString()} M`
+            }
+            else {
+                balanceString = "--";
+            }
+        }
+        return balanceString;
+    }
+
+
     return (
         <div className="flex flex-col h-full max-w-[500px] w-full mx-auto justify-center bg-violet-500/10 p-8 rounded-3xl border-2 border-highlight text-center">
             <div className={`mx-auto mt-10 mb-4 text-4xl xs:text-5xl font-bold font-limelight font-outline-1 ${ticker == '0X222' ? "text-red-600" : "text-yellow-400"}`}>
@@ -59,7 +85,7 @@ export default function Team({ name, ticker, ca, pair, wallet, img }: Props) {
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
                 <div className="mx-auto my-4 text-xl">{`${name}' Wallet Address`}</div>
                 <div className="flex justify-center mx-auto text-highlight ">
-                    <div className="mx-auto text-lg flex flex-row gap-2 flex-wrap justify-center"><div >Balance:</div><div>{ticker == '0X222' ? `${rugsBalance.toFixed(3).toLocaleString()} M` : `${richesBalance.toFixed(3).toLocaleString()} M`}</div></div>
+                    <div className="mx-auto text-lg flex flex-row gap-2 flex-wrap justify-center"><div >Balance:</div><div>{getBalance(ticker)}</div></div>
                 </div>
                 <CopyToClipboard text={wallet} copyText={wallet} textColor="text-highlight" textSize="text-md" iconSize="text-[10px]"></CopyToClipboard>
             </div>
