@@ -102,7 +102,7 @@ export default function Home() {
             <div className="flex flex-row text-2xl xs:text-3xl mx-auto align-middle">
               <div className="text-red-600 my-auto">{getOdds()}</div>
               <div className="px-2  my-auto">:</div>
-              <div className="text-yellow-400  my-auto">1.0</div>
+              <div className="text-yellow-400  my-auto">{richesBalance == 0 ? 0.0 : 1.0}</div>
             </div>
 
           </div>
