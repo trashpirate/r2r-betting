@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  .font-outline-none {
+    -webkit-text-stroke: 0px #67e8f9;
+  }
    .font-outline-1 {
     -webkit-text-stroke: 1px #67e8f9;
   }
