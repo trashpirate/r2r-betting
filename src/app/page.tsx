@@ -21,11 +21,18 @@ export default function Home() {
 
   const [rugsBalance, setRugsBalance] = useState<number>(0);
   const [richesBalance, setRichesBalance] = useState<number>(0);
+  const [rugsOdds, setRugsOdds] = useState<string>("--");
+  const [richesOdds, setRichesOdds] = useState<string>("--");
 
   function getWalletStatus() {
     fetch("/api/bets").then(response => response.json()).then(data => {
       setRugsBalance((data.rugs));
       setRichesBalance((data.riches));
+
+      const odds1 = data.rugs / 1000000;
+      const odds2 = data.riches / 1000000;
+      setRugsOdds(odds1.toFixed(0));
+      setRichesOdds(odds2.toFixed(0));
     });
   }
 
@@ -43,17 +50,28 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  function getOdds() {
-    let oddsString: string = "--";
+  function getOdds(balance1: number, balance2: number): [string, string] {
+    let oddsRugs: string = "--";
+    let oddsRiches: string = "--";
 
-    if (rugsBalance !== undefined && richesBalance !== undefined) {
-      const ratio = richesBalance > 0 ? rugsBalance / richesBalance : rugsBalance;
-      oddsString = `${ratio.toFixed(1).toLocaleString()}`
+    if (balance1 !== undefined && balance2 !== undefined) {
+      if (balance1 >= balance2) {
+        const ratio = balance2 > 0 ? balance1 / balance2 : balance1;
+        oddsRugs = `${ratio.toFixed(1).toLocaleString()}`
+        oddsRiches = `${(1).toFixed(1).toLocaleString()}`;
+      }
+      else {
+        const ratio = balance1 > 0 ? balance2 / balance1 : balance2;
+        oddsRugs = `${(1).toFixed(1).toLocaleString()}`;
+        oddsRiches = `${ratio.toFixed(1).toLocaleString()}`
+      }
+
     }
     else {
-      oddsString = "--";
+      oddsRugs = "--";
+      oddsRiches = "--";
     }
-    return oddsString;
+    return [oddsRugs, oddsRiches];
   }
 
   return (
@@ -100,9 +118,9 @@ export default function Home() {
           <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4 text-center flex flex-col">
             <div className="text-2xl xs:text-3xl text-white uppercase">Betting Odds</div>
             <div className="flex flex-row text-2xl xs:text-3xl mx-auto align-middle">
-              <div className="text-red-600 my-auto">{getOdds()}</div>
+              <div className="text-red-600 my-auto">{rugsOdds}</div>
               <div className="px-2  my-auto">:</div>
-              <div className="text-yellow-400  my-auto">{richesBalance == 0 ? 0.0 : (1).toFixed(1)}</div>
+              <div className="text-yellow-400  my-auto">{richesOdds}</div>
             </div>
 
           </div>
