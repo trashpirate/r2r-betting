@@ -32,7 +32,7 @@ export default function Team({ name, ticker, ca, pair, wallet, img, balance }: P
 
     return (
         <div className="flex flex-col h-full max-w-[500px] w-full mx-auto justify-center bg-violet-500/10 p-8 rounded-3xl border-2 border-highlight text-center">
-            <div className={`mx-auto mt-10 mb-4 text-4xl xs:text-5xl font-bold font-limelight font-outline-1 ${ticker == '0X222' ? "text-red-600" : "text-yellow-400"}`}>
+            <div className={`mx-auto mt-10 mb-4 text-3xl xs:text-4xl font-bold font-limelight ${ticker == '0X222' ? "text-red-600" : "text-yellow-400"}`}>
                 <div className={limelight.className}>{`TEAM ${name}`}</div>
                 <div className={limelight.className}>{`(${ticker})`}</div>
             </div>
