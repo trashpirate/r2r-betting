@@ -47,7 +47,7 @@ export default function Home() {
     let oddsString: string = "--";
 
     if (rugsBalance !== undefined && richesBalance !== undefined) {
-      const ratio = rugsBalance / richesBalance;
+      const ratio = richesBalance > 0 ? rugsBalance / richesBalance : rugsBalance;
       oddsString = `${ratio.toFixed(1).toLocaleString()}`
     }
     else {
@@ -108,8 +108,8 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row justify-center md:justify-between h-full w-full gap-10 mx-auto my-10">
-          <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif" balance={rugsBalance}></Team>
-          <Team name="Riche$" ticker="0X237" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif" balance={richesBalance}></Team>
+          <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif" balance={rugsBalance} wins={1} bnbpaid={0.06}></Team>
+          <Team name="Riche$" ticker="0X237" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif" balance={richesBalance} wins={0} bnbpaid={0}></Team>
         </div>
       </section>
 

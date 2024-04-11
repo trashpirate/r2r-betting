@@ -12,9 +12,11 @@ type Props = {
     img: string;
     wallet: string;
     balance: number;
+    wins: number;
+    bnbpaid: number
 }
 
-export default function Team({ name, ticker, ca, pair, wallet, img, balance }: Props) {
+export default function Team({ name, ticker, ca, pair, wallet, img, balance, wins, bnbpaid }: Props) {
 
     function getBalance() {
         let balanceString: string = "--";
@@ -45,7 +47,8 @@ export default function Team({ name, ticker, ca, pair, wallet, img, balance }: P
                 priority
             />
             <div className="flex flex-col justify-center mx-auto">
-                <div className="mx-auto mt-2 text-xl uppercase">Total wins: 0</div>
+                <div className="mx-auto mt-2 text-xl uppercase">Total wins: {wins}</div>
+                <div className="mx-auto mt-2 text-lg uppercase opacity-50 text-highlight">{`Total BNB paid to date: ${bnbpaid.toFixed(2)} BNB`}</div>
             </div>
 
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
@@ -59,6 +62,7 @@ export default function Team({ name, ticker, ca, pair, wallet, img, balance }: P
             <div className="flex flex-col justify-center my-4 max-w-40 xs:max-w-56 sm:max-w-64 2xl:max-w-none mx-auto">
                 <div className="mx-auto my-4  text-xl">{`${ticker} Contract Address`}</div>
                 <CopyToClipboard text={ca} copyText={ca} textColor="text-highlight" textSize="text-md" iconSize="text-[10px]"></CopyToClipboard>
+                <div className="uppercase text-orange-500">Do not send tokens here!</div>
             </div>
 
             <div className="flex justify-center my-8">
