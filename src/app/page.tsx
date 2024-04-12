@@ -125,9 +125,9 @@ export default function Home() {
           <div className="text-xl text-highlight mb-4">{formData.date}</div>
 
 
-          <div className="text-red-600 flex justify-center align-bottom  font-limelight font-outline-2"><h1 className={limelight.className}>{formData.teamrugs}</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Rug$)</div></div>
+          <div className="text-red-600 flex flex-row align-bottom font-limelight font-outline-2 gap-0 justify-center mx-auto max-w-40 md:max-w-96 lg:max-w-none"><h1 className={limelight.className + " mr-0 ml-auto w-fit"}>{formData.teamrugs}</h1><div className={limelight.className + " w-fit font-outline-none text-xl xs:text-3xl ml-1 mr-auto mb-0 mt-auto"}>(Rug$)</div></div>
           <div><h1 className={limelight.className + " font-limelight font-outline-2"}>VRS</h1></div>
-          <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>{formData.teamriches}</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Riche$)</div></div>
+          <div className="text-yellow-400 flex justify-center font-limelight font-outline-2 mx-auto max-w-40 md:max-w-96 lg:max-w-none"><h1 className={limelight.className + " mr-0 ml-auto w-fit"}>{formData.teamriches}</h1><div className={limelight.className + " w-fit font-outline-none text-xl xs:text-3xl mb-0 mt-auto ml-1 mr-auto "}>(Riche$)</div></div>
           <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4 text-center flex flex-col">
             <div className="text-2xl xs:text-3xl text-white uppercase">Betting Odds</div>
             <div className="flex flex-row text-2xl xs:text-3xl mx-auto align-middle">
