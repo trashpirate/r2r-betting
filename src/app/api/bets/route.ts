@@ -14,9 +14,7 @@ const TEAM237_CA = "0x517316ab1bf91296c821a2ab98e3d0924a625237";
 
 const client = createPublicClient({
   chain: bsc,
-  transport: http(
-    `https://go.getblock.io/${process.env.NEXT_PUBLIC_GETBBLOCK_API_KEY}`
-  ),
+  transport: http(`https://bsc-dataseed1.binance.org/`),
 });
 
 export async function GET() {

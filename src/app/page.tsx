@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 import Team from "../components/team";
 import { limelight } from './fonts'
 import Footer from "@/components/footer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useInterval from "@/components/helpers/useInterval";
 
 
@@ -25,42 +25,45 @@ export default function Home() {
   const [rugsOdds, setRugsOdds] = useState<string>("--");
   const [richesOdds, setRichesOdds] = useState<string>("--");
 
-  // function getWalletStatus() {
-  //   fetch("/api/bets").then(response => response.json()).then(data => {
-  //     setRugsBalance((data.rugs));
-  //     setRichesBalance((data.riches));
-
-  //     const odds1 = data.rugs / 1000000;
-  //     const odds2 = data.riches / 1000000;
-  //     setRugsOdds(odds1.toFixed(0));
-  //     setRichesOdds(odds2.toFixed(0));
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   getWalletStatus();
-  // }, [])
+  const mounted = useRef(false);
 
   useEffect(() => {
+    mounted.current = true;
+    fetch("/api/bets").then(response => response.json()).then(data => {
+      setRugsBalance((data.rugs));
+      setRichesBalance((data.riches));
 
-    function getWalletStatus() {
-      fetch("/api/bets").then(response => response.json()).then(data => {
-        setRugsBalance((data.rugs));
-        setRichesBalance((data.riches));
+      const odds1 = data.rugs / 1000000;
+      const odds2 = data.riches / 1000000;
+      setRugsOdds(odds1.toFixed(0));
+      setRichesOdds(odds2.toFixed(0));
+    });
 
-        const odds1 = data.rugs / 1000000;
-        const odds2 = data.riches / 1000000;
-        setRugsOdds(odds1.toFixed(0));
-        setRichesOdds(odds2.toFixed(0));
-      });
-    }
+    return () => {
+      mounted.current = false;
+    };
+  }, [])
 
-    const interval = setInterval(() => {
-      getWalletStatus()
-    }, 60000);
+  // useEffect(() => {
 
-    return () => clearInterval(interval);
-  }, []);
+  //   function getWalletStatus() {
+  //     fetch("/api/bets", { next: { revalidate: 5 } }).then(response => response.json()).then(data => {
+  //       setRugsBalance((data.rugs));
+  //       setRichesBalance((data.riches));
+
+  //       const odds1 = data.rugs / 1000000;
+  //       const odds2 = data.riches / 1000000;
+  //       setRugsOdds(odds1.toFixed(0));
+  //       setRichesOdds(odds2.toFixed(0));
+  //     });
+  //   }
+
+  //   const interval = setInterval(() => {
+  //     getWalletStatus()
+  //   }, 180000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
