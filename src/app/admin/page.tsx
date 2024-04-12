@@ -31,6 +31,18 @@ export default function Admin() {
     completed: 'false',
   })
 
+  const [roundUpdated, setRoundUdpated] = useState<Boolean>(false);
+
+  useEffect(() => {
+    // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
+    const timeoutId = setTimeout(() => {
+      setRoundUdpated(false);
+    }, 60000);
+
+    // Cleanup function to clear the timeout if the component unmounts
+    return () => clearTimeout(timeoutId);
+  }, [roundUpdated]); // Empty dependency array ensures the effect runs only once
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }))
@@ -60,7 +72,8 @@ export default function Admin() {
         bnbriches: data.rows.bnbriches,
         completed: data.rows.completed,
       }
-      setFormData(latestRound)
+      setFormData(latestRound);
+      setRoundUdpated(true);
     })
 
   }
@@ -130,7 +143,9 @@ export default function Admin() {
             <label className={labelStyle} id="completed">Round Completed:
               <input className={inputStyle} type="text" id="completed" name="completed" onChange={handleChange} value={formData.completed} /></label>
           </div>
-
+          <div className={fieldStyle}>
+            <div className="text-orange-500 text-center h-12 mx-auto">{roundUpdated ? `Round #${formData.num} added/updated.` : `By clicking submit you will add/update betting round #${formData.num}`}</div>
+          </div>
           <div className="mb-4 flex flex-row gap-4  w-80 justify-center bg-white/10 p-4 rounded-md">
             <button className="text-left bg-green-800 w-fit p-2 rounded-md" type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
           </div>
