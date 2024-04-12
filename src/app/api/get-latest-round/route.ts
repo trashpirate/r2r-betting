@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   let latest: QueryResult<QueryResultRow>;
   try {
     const latestNum = await sql`SELECT MAX(number) FROM Rounds;`;
-    console.log(latestNum);
+
     latest =
       await sql`SELECT * FROM Rounds WHERE number = ${latestNum.rows[0].max};`;
   } catch (error) {

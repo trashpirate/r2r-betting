@@ -1,6 +1,5 @@
 "use client";
 
-import { revalidatePath } from "next/cache";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 const ADMIN_ADDRESS = "0xb6e6e590275060EF691229529031B481FdD31837";
@@ -29,7 +28,7 @@ export default function Admin() {
     bnbrugs: '0',
     winsriches: '0',
     bnbriches: '0',
-    completed: 'false'
+    completed: 'false',
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,24 +37,32 @@ export default function Admin() {
   }
 
   async function handleSubmit() {
-    console.log('hello')
+
     const queryString = `?num=${formData.num}&title=${formData.title}&date=${formData.date}&teamrugs=${formData.teamrugs}&teamriches=${formData.teamriches}&winsrugs=${formData.winsrugs}&bnbrugs=${formData.bnbrugs}&winsriches=${formData.winsriches}&bnbriches=${formData.bnbriches}&completed=${formData.completed}`;
-    const result = await fetch("/api/add-round" + queryString);
-    fetch("/api/get-latest-round", { cache: 'no-store' }).then(response => response.json()).then(data => {
-      const latestRound: RoundFormState = {
-        num: data.rows.number,
-        title: data.rows.title,
-        date: data.rows.date,
-        teamrugs: data.rows.teamrugs,
-        teamriches: data.rows.teamriches,
-        winsrugs: data.rows.winsrugs,
-        bnbrugs: data.rows.bnbrugs,
-        winsriches: data.rows.winsriches,
-        bnbriches: data.rows.bnbriches,
-        completed: data.rows.completed
-      }
-      setFormData(latestRound)
-    })
+    const response = await fetch("/api/add-round" + queryString
+    );
+
+    if (response.ok) {
+      fetch("/api/get-latest-round", { cache: 'no-store' }).then(response => response.json()).then(data => {
+        const latestRound: RoundFormState = {
+          num: data.rows.number,
+          title: data.rows.title,
+          date: data.rows.date,
+          teamrugs: data.rows.teamrugs,
+          teamriches: data.rows.teamriches,
+          winsrugs: data.rows.winsrugs,
+          bnbrugs: data.rows.bnbrugs,
+          winsriches: data.rows.winsriches,
+          bnbriches: data.rows.bnbriches,
+          completed: data.rows.completed,
+        }
+        setFormData(latestRound)
+      })
+
+    } else {
+      console.error('Failed to add round:', response.statusText);
+    }
+
   }
 
   useEffect(() => {
@@ -70,9 +77,8 @@ export default function Admin() {
         bnbrugs: data.rows.bnbrugs,
         winsriches: data.rows.winsriches,
         bnbriches: data.rows.bnbriches,
-        completed: data.rows.completed
+        completed: data.rows.completed,
       }
-      console.log(latestRound)
       setFormData(latestRound)
     })
   }, [])
@@ -124,6 +130,7 @@ export default function Admin() {
             <label className={labelStyle} id="completed">Round Completed:
               <input className={inputStyle} type="text" id="completed" name="completed" onChange={handleChange} value={formData.completed} /></label>
           </div>
+
           <div className="mb-4 flex flex-row gap-4  w-80 justify-center bg-white/10 p-4 rounded-md">
             <button className="text-left bg-green-800 w-fit p-2 rounded-md" type="submit" onClick={() => handleSubmit()}>Submit</button>
           </div>
