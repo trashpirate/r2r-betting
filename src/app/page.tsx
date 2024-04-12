@@ -17,6 +17,18 @@ const TEAM237_CA = "0x517316ab1bf91296c821a2ab98e3d0924a625237";
 const TEAM222_PAIR = "0xa1728386594cbfaa9d0a4b533d50346fc98ae6a8";
 const TEAM237_PAIR = "0xbee0d2e7172aa4fcfbe2fa6a30bf1af973df0204";
 
+interface RoundFormState {
+  num: string;
+  title: string;
+  date: string;
+  teamrugs: string;
+  teamriches: string;
+  winsrugs: string;
+  bnbrugs: string;
+  winsriches: string;
+  bnbriches: string;
+  completed: string;
+}
 
 export default function Home() {
 
@@ -26,6 +38,18 @@ export default function Home() {
   const [richesOdds, setRichesOdds] = useState<string>("--");
 
   const mounted = useRef(false);
+  const [formData, setFormData] = useState<RoundFormState>({
+    num: '0',
+    title: '',
+    date: '',
+    teamrugs: '',
+    teamriches: '',
+    winsrugs: '0',
+    bnbrugs: '0',
+    winsriches: '0',
+    bnbriches: '0',
+    completed: 'false',
+  })
 
   useEffect(() => {
     mounted.current = true;
@@ -44,26 +68,23 @@ export default function Home() {
     };
   }, [])
 
-  // useEffect(() => {
-
-  //   function getWalletStatus() {
-  //     fetch("/api/bets", { next: { revalidate: 5 } }).then(response => response.json()).then(data => {
-  //       setRugsBalance((data.rugs));
-  //       setRichesBalance((data.riches));
-
-  //       const odds1 = data.rugs / 1000000;
-  //       const odds2 = data.riches / 1000000;
-  //       setRugsOdds(odds1.toFixed(0));
-  //       setRichesOdds(odds2.toFixed(0));
-  //     });
-  //   }
-
-  //   const interval = setInterval(() => {
-  //     getWalletStatus()
-  //   }, 180000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    fetch("/api/get-latest-round", { cache: 'no-store' }).then(response => response.json()).then(data => {
+      const latestRound: RoundFormState = {
+        num: data.rows.number,
+        title: data.rows.title,
+        date: data.rows.date,
+        teamrugs: data.rows.teamrugs,
+        teamriches: data.rows.teamriches,
+        winsrugs: data.rows.winsrugs,
+        bnbrugs: data.rows.bnbrugs,
+        winsriches: data.rows.winsriches,
+        bnbriches: data.rows.bnbriches,
+        completed: data.rows.completed,
+      }
+      setFormData(latestRound)
+    })
+  }, [])
 
   return (
     <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
@@ -91,6 +112,7 @@ export default function Home() {
                   <li className="ml-8">If you are team Rug$, send 1 Million Ox222 to his address.</li>
                   <li className="ml-8">If you are team Riche$, send 1 Million 0x237 to his address.</li>
                   <li className="ml-8">If your team wins you recieve BNB back to your wallet!</li>
+                  <li className="ml-8">The bnb you recieve is your portion of the losing team&apos;s bet plus your bet, Minus 5%.</li>
                 </ol>
               </div>
 

@@ -2,28 +2,6 @@ import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  //   console.log("here");
-  //   const headerList = headers();
-  //   const token = headerList.get("authorization")?.split(" ")[1];
-
-  //   if (!token) {
-  //     console.log("no token");
-  //     return NextResponse.json({ message: "No token provided" }, { status: 401 });
-  //   }
-
-  //   try {
-  //     const tokenRef = process.env.NEXT_PUBLIC_SECRET_KEY as string;
-  //     console.log(token);
-  //     console.log(tokenRef);
-
-  //     const decoded = jwt.verify(token, tokenRef);
-  //     console.log("token valid");
-  //     return NextResponse.json({ message: "Token is valid" }, { status: 200 });
-  //   } catch (error) {
-  //     console.log("invalid token");
-  //     return NextResponse.json({ message: "Invalid Token" }, { status: 401 });
-  //   }
-
   if (request.url) {
     const { searchParams } = new URL(request.url);
     const num = Number(searchParams.get("num"));
