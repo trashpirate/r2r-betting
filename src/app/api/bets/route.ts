@@ -30,7 +30,7 @@ export async function GET() {
     args: [TEAM222_ADDRESS],
   });
 
-  // console.log(data_rugs);
+  console.log(data_rugs);
 
   const data_riches = await client.readContract({
     address: TEAM237_CA,
@@ -39,7 +39,7 @@ export async function GET() {
     args: [TEAM237_ADDRESS],
   });
 
-  // console.log(data_riches);
+  console.log(data_riches);
 
   rugs_balance = Number(formatEther(data_rugs));
   riches_balance = Number(formatEther(data_riches));

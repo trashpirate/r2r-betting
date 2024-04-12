@@ -5,6 +5,7 @@ import Team from "../components/team";
 import { limelight } from './fonts'
 import Footer from "@/components/footer";
 import { useEffect, useState } from "react";
+import useInterval from "@/components/helpers/useInterval";
 
 
 const TEAM222_ADDRESS = "0xB9A5869Cf215aA9e15eeaE4AA06d8AcB928341e2";
@@ -24,55 +25,42 @@ export default function Home() {
   const [rugsOdds, setRugsOdds] = useState<string>("--");
   const [richesOdds, setRichesOdds] = useState<string>("--");
 
-  function getWalletStatus() {
-    fetch("/api/bets").then(response => response.json()).then(data => {
-      setRugsBalance((data.rugs));
-      setRichesBalance((data.riches));
+  // function getWalletStatus() {
+  //   fetch("/api/bets").then(response => response.json()).then(data => {
+  //     setRugsBalance((data.rugs));
+  //     setRichesBalance((data.riches));
 
-      const odds1 = data.rugs / 1000000;
-      const odds2 = data.riches / 1000000;
-      setRugsOdds(odds1.toFixed(0));
-      setRichesOdds(odds2.toFixed(0));
-    });
-  }
+  //     const odds1 = data.rugs / 1000000;
+  //     const odds2 = data.riches / 1000000;
+  //     setRugsOdds(odds1.toFixed(0));
+  //     setRichesOdds(odds2.toFixed(0));
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   getWalletStatus();
+  // }, [])
 
   useEffect(() => {
-    getWalletStatus();
-  }, [])
 
-  useEffect(() => {
+    function getWalletStatus() {
+      fetch("/api/bets").then(response => response.json()).then(data => {
+        setRugsBalance((data.rugs));
+        setRichesBalance((data.riches));
 
-    getWalletStatus();
+        const odds1 = data.rugs / 1000000;
+        const odds2 = data.riches / 1000000;
+        setRugsOdds(odds1.toFixed(0));
+        setRichesOdds(odds2.toFixed(0));
+      });
+    }
+
     const interval = setInterval(() => {
       getWalletStatus()
     }, 60000);
 
     return () => clearInterval(interval);
   }, []);
-
-  function getOdds(balance1: number, balance2: number): [string, string] {
-    let oddsRugs: string = "--";
-    let oddsRiches: string = "--";
-
-    if (balance1 !== undefined && balance2 !== undefined) {
-      if (balance1 >= balance2) {
-        const ratio = balance2 > 0 ? balance1 / balance2 : balance1;
-        oddsRugs = `${ratio.toFixed(1).toLocaleString()}`
-        oddsRiches = `${(1).toFixed(1).toLocaleString()}`;
-      }
-      else {
-        const ratio = balance1 > 0 ? balance2 / balance1 : balance2;
-        oddsRugs = `${(1).toFixed(1).toLocaleString()}`;
-        oddsRiches = `${ratio.toFixed(1).toLocaleString()}`
-      }
-
-    }
-    else {
-      oddsRugs = "--";
-      oddsRiches = "--";
-    }
-    return [oddsRugs, oddsRiches];
-  }
 
   return (
     <main className="flex min-h-screen flex-col justify-between bg-hero-pattern bg-scroll   text-white bg-blend-darken bg-background ">
