@@ -112,7 +112,7 @@ export default function Home() {
                   <li className="ml-8">If you are team Rug$, send 1 Million Ox222 to his address.</li>
                   <li className="ml-8">If you are team Riche$, send 1 Million 0x237 to his address.</li>
                   <li className="ml-8">If your team wins you recieve BNB back to your wallet!</li>
-                  <li className="ml-8">The bnb you recieve is your portion of the losing team&apos;s bet plus your bet, Minus 5%.</li>
+                  <li className="ml-8">The BNB you recieve is your portion of the losing team&apos;s bet plus your bet minus 5%.</li>
                 </ol>
               </div>
 
@@ -121,13 +121,13 @@ export default function Home() {
 
         </div>
         <div className="text-4xl xs:text-5xl sm:text-7xl flex flex-col justify-center text-center my-10 bg-violet-500/10 py-8 px-10 rounded-3xl max-w-[800px] mx-auto">
-          <div className="text-4xl text-white mb-4 uppercase">BMF TITLE FIGHT</div>
-          <div className="text-xl text-highlight mb-4">04/13/24 8ish PM EST</div>
+          <div className="text-4xl text-white mb-4 uppercase">{formData.title}</div>
+          <div className="text-xl text-highlight mb-4">{formData.date}</div>
 
 
-          <div className="text-red-600 flex justify-center align-bottom  font-limelight font-outline-2"><h1 className={limelight.className}>Justin Gaethje</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Rug$)</div></div>
+          <div className="text-red-600 flex justify-center align-bottom  font-limelight font-outline-2"><h1 className={limelight.className}>{formData.teamrugs}</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Rug$)</div></div>
           <div><h1 className={limelight.className + " font-limelight font-outline-2"}>VRS</h1></div>
-          <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>Max Halloway</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Riche$)</div></div>
+          <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>{formData.teamriches}</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Riche$)</div></div>
           <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4 text-center flex flex-col">
             <div className="text-2xl xs:text-3xl text-white uppercase">Betting Odds</div>
             <div className="flex flex-row text-2xl xs:text-3xl mx-auto align-middle">
@@ -139,8 +139,8 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row justify-center md:justify-between h-full w-full gap-10 mx-auto my-10">
-          <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif" balance={rugsBalance} wins={1} bnbpaid={0.06}></Team>
-          <Team name="Riche$" ticker="0X237" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif" balance={richesBalance} wins={0} bnbpaid={0}></Team>
+          <Team name="Rug$" ticker="0X222" ca={TEAM222_CA} pair={TEAM222_PAIR} wallet={TEAM222_ADDRESS} img="/0x222.gif" balance={rugsBalance} wins={Number(formData.winsrugs)} bnbpaid={Number(formData.bnbrugs)}></Team>
+          <Team name="Riche$" ticker="0X237" ca={TEAM237_CA} pair={TEAM237_PAIR} wallet={TEAM237_ADDRESS} img="/0x237.gif" balance={richesBalance} wins={Number(formData.winsriches)} bnbpaid={Number(formData.bnbriches)}></Team>
         </div>
       </section>
 
