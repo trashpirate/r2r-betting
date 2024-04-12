@@ -14,9 +14,7 @@ const TEAM237_CA = "0x517316ab1bf91296c821a2ab98e3d0924a625237";
 
 const client = createPublicClient({
   chain: bsc,
-  transport: http(
-    `https://go.getblock.io/${process.env.NEXT_PUBLIC_GETBBLOCK_API_KEY}`
-  ),
+  transport: http(`https://bsc-dataseed1.binance.org/`),
 });
 
 export async function GET() {
@@ -30,7 +28,7 @@ export async function GET() {
     args: [TEAM222_ADDRESS],
   });
 
-  // console.log(data_rugs);
+  console.log(data_rugs);
 
   const data_riches = await client.readContract({
     address: TEAM237_CA,
@@ -39,7 +37,7 @@ export async function GET() {
     args: [TEAM237_ADDRESS],
   });
 
-  // console.log(data_riches);
+  console.log(data_riches);
 
   rugs_balance = Number(formatEther(data_rugs));
   riches_balance = Number(formatEther(data_riches));
