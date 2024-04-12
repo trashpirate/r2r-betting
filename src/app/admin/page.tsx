@@ -37,7 +37,7 @@ export default function Admin() {
     // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
     const timeoutId = setTimeout(() => {
       setRoundUdpated(false);
-    }, 10000);
+    }, 5000);
 
     // Cleanup function to clear the timeout if the component unmounts
     return () => clearTimeout(timeoutId);
