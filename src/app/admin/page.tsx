@@ -31,37 +31,50 @@ export default function Admin() {
     completed: 'false',
   })
 
+  const [roundUpdated, setRoundUdpated] = useState<Boolean>(false);
+
+  useEffect(() => {
+    // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
+    const timeoutId = setTimeout(() => {
+      setRoundUdpated(false);
+    }, 5000);
+
+    // Cleanup function to clear the timeout if the component unmounts
+    return () => clearTimeout(timeoutId);
+  }, [roundUpdated]); // Empty dependency array ensures the effect runs only once
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }))
   }
 
-  async function handleSubmit() {
+  async function handleSubmit(e: any) {
+    e.preventDefault();
 
-    const queryString = `?num=${formData.num}&title=${formData.title}&date=${formData.date}&teamrugs=${formData.teamrugs}&teamriches=${formData.teamriches}&winsrugs=${formData.winsrugs}&bnbrugs=${formData.bnbrugs}&winsriches=${formData.winsriches}&bnbriches=${formData.bnbriches}&completed=${formData.completed}`;
-    const response = await fetch("/api/add-round" + queryString
-    );
+    await fetch('api/add-round', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
 
-    if (response.ok) {
-      fetch("/api/get-latest-round", { cache: 'no-store' }).then(response => response.json()).then(data => {
-        const latestRound: RoundFormState = {
-          num: data.rows.number,
-          title: data.rows.title,
-          date: data.rows.date,
-          teamrugs: data.rows.teamrugs,
-          teamriches: data.rows.teamriches,
-          winsrugs: data.rows.winsrugs,
-          bnbrugs: data.rows.bnbrugs,
-          winsriches: data.rows.winsriches,
-          bnbriches: data.rows.bnbriches,
-          completed: data.rows.completed,
-        }
-        setFormData(latestRound)
-      })
-
-    } else {
-      console.error('Failed to add round:', response.statusText);
-    }
+    await fetch("/api/get-latest-round", { cache: 'no-store' }).then(response => response.json()).then(data => {
+      const latestRound: RoundFormState = {
+        num: data.rows.number,
+        title: data.rows.title,
+        date: data.rows.date,
+        teamrugs: data.rows.teamrugs,
+        teamriches: data.rows.teamriches,
+        winsrugs: data.rows.winsrugs,
+        bnbrugs: data.rows.bnbrugs,
+        winsriches: data.rows.winsriches,
+        bnbriches: data.rows.bnbriches,
+        completed: data.rows.completed,
+      }
+      setFormData(latestRound);
+      setRoundUdpated(true);
+    })
 
   }
 
@@ -88,7 +101,7 @@ export default function Admin() {
   const fieldStyle = "mb-4 flex flex-row gap-4  w-80 justify-between bg-white/10 p-4 rounded-md";
   return (
     <main className="p-16 min-h-screen bg-background text-white">
-      <form className="flex flex-col p-2">
+      <form className="flex flex-col p-2" method="POST">
         <div className="flex flex-col p-2">
           <div className={fieldStyle}>
             <label className={labelStyle} id="number">Round:
@@ -130,9 +143,11 @@ export default function Admin() {
             <label className={labelStyle} id="completed">Round Completed:
               <input className={inputStyle} type="text" id="completed" name="completed" onChange={handleChange} value={formData.completed} /></label>
           </div>
-
+          <div className={fieldStyle}>
+            <div className="text-orange-500 text-center h-12 mx-auto">{roundUpdated ? `Round #${formData.num} added/updated.` : `By clicking submit you will add/update betting round #${formData.num}`}</div>
+          </div>
           <div className="mb-4 flex flex-row gap-4  w-80 justify-center bg-white/10 p-4 rounded-md">
-            <button className="text-left bg-green-800 w-fit p-2 rounded-md" type="submit" onClick={() => handleSubmit()}>Submit</button>
+            <button className="text-left bg-green-800 hover:bg-green-600 w-fit p-2 rounded-md" type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
           </div>
         </div>
       </form>
