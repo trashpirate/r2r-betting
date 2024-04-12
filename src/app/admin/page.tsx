@@ -147,7 +147,7 @@ export default function Admin() {
             <div className="text-orange-500 text-center h-12 mx-auto">{roundUpdated ? `Round #${formData.num} added/updated.` : `By clicking submit you will add/update betting round #${formData.num}`}</div>
           </div>
           <div className="mb-4 flex flex-row gap-4  w-80 justify-center bg-white/10 p-4 rounded-md">
-            <button className="text-left bg-green-800 w-fit p-2 rounded-md" type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
+            <button className="text-left bg-green-800 hover:bg-green-600 w-fit p-2 rounded-md" type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
           </div>
         </div>
       </form>
