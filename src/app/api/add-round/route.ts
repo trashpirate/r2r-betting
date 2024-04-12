@@ -1,35 +1,39 @@
 import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  if (request.url) {
-    const { searchParams } = new URL(request.url);
-    const num = Number(searchParams.get("num"));
-    const title = searchParams.get("title");
-    const date = searchParams.get("date");
-    const teamrugs = searchParams.get("teamrugs");
-    const teamriches = searchParams.get("teamriches");
-    const winsrugs = Number(searchParams.get("winsrugs"));
-    const bnbrugs = Number(searchParams.get("bnbrugs"));
-    const winsriches = Number(searchParams.get("winsriches"));
-    const bnbriches = Number(searchParams.get("bnbriches"));
-    const completed = Boolean(searchParams.get("completed"));
-    const count = await sql`SELECT COUNT(*) FROM Rounds;`;
-    const numRounds = Number(count.rows[0].count);
+export async function POST(request: NextRequest, response: NextResponse) {
+  if (request.method !== "POST") {
+    return NextResponse.json(
+      { message: "Only POST requests allowed" },
+      { status: 405 }
+    );
+  }
 
-    try {
-      if (num <= numRounds) {
-        await sql`UPDATE Rounds SET number = ${num}, title = ${title}, date = ${date}, teamrugs = ${teamrugs}, teamriches = ${teamriches}, winsrugs = ${winsrugs}, bnbrugs = ${bnbrugs}, winsriches = ${winsriches}, bnbriches = ${bnbriches}, completed = ${completed} WHERE number = ${num};`;
-        console.log("Round updated.");
-      } else {
-        await sql`INSERT INTO Rounds (number, title, date, teamrugs, teamriches, winsrugs, bnbrugs, winsriches, bnbriches, completed ) VALUES ( ${num}, ${title}, ${date}, ${teamrugs}, ${teamriches}, ${winsriches}, ${bnbrugs}, ${winsriches}, ${bnbriches}, ${completed} );`;
-        console.log("Round inserted.");
-      }
-    } catch (error) {
-      console.error("Failed to add round:", num);
+  const body = await request.json();
+
+  const num = Number(body.num);
+  const title = body.title;
+  const date = body.date;
+  const teamrugs = body.teamrugs;
+  const teamriches = body.teamriches;
+  const winsrugs = Number(body.winsrugs);
+  const bnbrugs = Number(body.bnbrugs);
+  const winsriches = Number(body.winsriches);
+  const bnbriches = Number(body.bnbriches);
+  const completed = Boolean(body.completed == "true");
+  const count = await sql`SELECT COUNT(*) FROM Rounds;`;
+  const numRounds = Number(count.rows[0].count);
+
+  try {
+    if (num <= numRounds) {
+      await sql`UPDATE Rounds SET number = ${num}, title = ${title}, date = ${date}, teamrugs = ${teamrugs}, teamriches = ${teamriches}, winsrugs = ${winsrugs}, bnbrugs = ${bnbrugs}, winsriches = ${winsriches}, bnbriches = ${bnbriches}, completed = ${completed} WHERE number = ${num};`;
+      console.log("Round updated.");
+    } else {
+      await sql`INSERT INTO Rounds (number, title, date, teamrugs, teamriches, winsrugs, bnbrugs, winsriches, bnbriches, completed ) VALUES ( ${num}, ${title}, ${date}, ${teamrugs}, ${teamriches}, ${winsriches}, ${bnbrugs}, ${winsriches}, ${bnbriches}, ${completed} );`;
+      console.log("Round inserted.");
     }
-  } else {
-    console.error("Failed to add round:", request.url);
+  } catch (error) {
+    console.error("Failed to add round:", num);
   }
 
   const rounds = await sql`SELECT * FROM Rounds;`;
