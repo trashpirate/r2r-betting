@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Concert_One } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const defaultFont = Concert_One({ subsets: ["latin"], weight: ['400'] });
 
