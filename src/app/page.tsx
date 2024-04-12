@@ -101,13 +101,13 @@ export default function Home() {
             height={600}
             priority
           />
-          <div className="text-xl px-4 lg:px-8 ">
-            <h1 className="mt-8 mb-4 text-4xl ">When is the last time you and a friend settled an arguement with a small wager?</h1>
-            <div className="my-4 text-3xl text-indigo-300"><div>Welcome to FlamelingBets where you can tell your friend</div><div>&quot;Ha, told you so!&quot;</div></div>
-            <div className="my-4 text-highlight text-3xl flex flex-col">
+          <div className="text-xl lg:px-8 ">
+            <h1 className="mt-8 mb-4 text-3xl sm:text-4xl ">When is the last time you and a friend settled an arguement with a small wager?</h1>
+            <div className="my-4 text-2xl sm:text-3xl text-indigo-300"><div>Welcome to FlamelingBets where you can tell your friend</div><div>&quot;Ha, told you so!&quot;</div></div>
+            <div className="my-4 text-highlight text-xl sm:text-3xl flex flex-col">
               <div className="text-left sm:text-center ml-6 sm:ml-none">It is simple:</div>
               <div className="mx-auto p-4">
-                <ol className="list-decimal text-left text-2xl">
+                <ol className="list-decimal text-left">
                   <li className="ml-8">Pick a side</li>
                   <li className="ml-8">If you are team Rug$, send 1 Million Ox222 to his address.</li>
                   <li className="ml-8">If you are team Riche$, send 1 Million 0x237 to his address.</li>
@@ -125,9 +125,9 @@ export default function Home() {
           <div className="text-xl text-highlight mb-4">{formData.date}</div>
 
 
-          <div className="text-red-600 flex justify-center align-bottom  font-limelight font-outline-2"><h1 className={limelight.className}>{formData.teamrugs}</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Rug$)</div></div>
+          <div className="text-red-600 flex flex-row align-bottom font-limelight font-outline-2 gap-0 justify-center mx-auto max-w-40 md:max-w-96 lg:max-w-none"><h1 className={limelight.className + " mr-0 ml-auto w-fit"}>{formData.teamrugs}</h1><div className={limelight.className + " w-fit font-outline-none text-xl xs:text-3xl ml-1 mr-auto mb-0 mt-auto"}>(Rug$)</div></div>
           <div><h1 className={limelight.className + " font-limelight font-outline-2"}>VRS</h1></div>
-          <div className="text-yellow-400 flex  justify-center  font-limelight font-outline-2"><h1 className={limelight.className}>{formData.teamriches}</h1><div className={limelight.className + " font-outline-none text-xl xs:text-3xl mb-0 mt-auto"}>(Riche$)</div></div>
+          <div className="text-yellow-400 flex justify-center font-limelight font-outline-2 mx-auto max-w-40 md:max-w-96 lg:max-w-none"><h1 className={limelight.className + " mr-0 ml-auto w-fit"}>{formData.teamriches}</h1><div className={limelight.className + " w-fit font-outline-none text-xl xs:text-3xl mb-0 mt-auto ml-1 mr-auto "}>(Riche$)</div></div>
           <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4 text-center flex flex-col">
             <div className="text-2xl xs:text-3xl text-white uppercase">Betting Odds</div>
             <div className="flex flex-row text-2xl xs:text-3xl mx-auto align-middle">
