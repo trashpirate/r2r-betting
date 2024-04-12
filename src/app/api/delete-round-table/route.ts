@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   console.log(`DROP TABLE ${roundName};`);
   try {
     if (roundName == null) throw new Error("Round name required");
-    const result = await sql`DROP TABLE bets;`;
+    const result = await sql`DROP TABLE Rounds;`;
     return NextResponse.json({ result }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
