@@ -101,13 +101,13 @@ export default function Home() {
             height={600}
             priority
           />
-          <div className="text-xl px-4 lg:px-8 ">
-            <h1 className="mt-8 mb-4 text-4xl ">When is the last time you and a friend settled an arguement with a small wager?</h1>
-            <div className="my-4 text-3xl text-indigo-300"><div>Welcome to FlamelingBets where you can tell your friend</div><div>&quot;Ha, told you so!&quot;</div></div>
-            <div className="my-4 text-highlight text-3xl flex flex-col">
+          <div className="text-xl lg:px-8 ">
+            <h1 className="mt-8 mb-4 text-3xl sm:text-4xl ">When is the last time you and a friend settled an arguement with a small wager?</h1>
+            <div className="my-4 text-2xl sm:text-3xl text-indigo-300"><div>Welcome to FlamelingBets where you can tell your friend</div><div>&quot;Ha, told you so!&quot;</div></div>
+            <div className="my-4 text-highlight text-xl sm:text-3xl flex flex-col">
               <div className="text-left sm:text-center ml-6 sm:ml-none">It is simple:</div>
               <div className="mx-auto p-4">
-                <ol className="list-decimal text-left text-2xl">
+                <ol className="list-decimal text-left">
                   <li className="ml-8">Pick a side</li>
                   <li className="ml-8">If you are team Rug$, send 1 Million Ox222 to his address.</li>
                   <li className="ml-8">If you are team Riche$, send 1 Million 0x237 to his address.</li>
