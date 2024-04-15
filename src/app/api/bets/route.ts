@@ -14,7 +14,9 @@ const TEAM237_CA = "0x517316ab1bf91296c821a2ab98e3d0924a625237";
 
 const client = createPublicClient({
   chain: bsc,
-  transport: http(`https://bsc-dataseed1.binance.org/`),
+  transport: http(
+    `https://rpc.ankr.com/bsc/${process.env.NEXT_PUBLIC_ANKR_API_KEY}`
+  ),
 });
 
 export async function GET() {
