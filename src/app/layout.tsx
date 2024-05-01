@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Fjalla_One, Francois_One, Limelight, Black_Han_Sans, Londrina_Solid, Lalezar, Viga, Rubik_Mono_One, Luckiest_Guy, Concert_One } from "next/font/google";
+import { Concert_One } from "next/font/google";
 import "./globals.css";
+import { headers } from "next/headers";
+import { Providers } from "./providers";
 
 const defaultFont = Concert_One({ subsets: ["latin"], weight: ['400'] });
 
@@ -33,9 +35,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookie = headers().get("cookie");
   return (
     <html lang="en">
-      <body className={defaultFont.className}>{children}</body>
+      <body className={defaultFont.className}><Providers cookie={cookie}>{children}</Providers></body>
     </html>
   );
 }

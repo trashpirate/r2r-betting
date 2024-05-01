@@ -6,6 +6,9 @@ import { limelight } from './fonts'
 import Footer from "@/components/footer";
 import { useEffect, useRef, useState } from "react";
 import useInterval from "@/components/helpers/useInterval";
+import { useReadContract, useReadContracts } from "wagmi";
+import { flamelingABI } from "@/assets/flamelingTokenABI";
+import { formatEther } from "viem";
 
 
 const TEAM222_ADDRESS = "0xB9A5869Cf215aA9e15eeaE4AA06d8AcB928341e2";
@@ -34,8 +37,6 @@ export default function Home() {
 
   const [rugsBalance, setRugsBalance] = useState<number>(0);
   const [richesBalance, setRichesBalance] = useState<number>(0);
-  const [rugsOdds, setRugsOdds] = useState<string>("--");
-  const [richesOdds, setRichesOdds] = useState<string>("--");
 
   const mounted = useRef(false);
   const [formData, setFormData] = useState<RoundFormState>({
@@ -51,22 +52,37 @@ export default function Home() {
     completed: 'false',
   })
 
+  const {
+    data,
+  } = useReadContracts({
+    contracts: [{
+      address: TEAM222_CA,
+      abi: flamelingABI,
+      functionName: "balanceOf",
+      args: [TEAM222_ADDRESS],
+    }, {
+      address: TEAM237_CA,
+      abi: flamelingABI,
+      functionName: "balanceOf",
+      args: [TEAM237_ADDRESS],
+    }]
+  })
+
   useEffect(() => {
-    mounted.current = true;
-    fetch("/api/bets").then(response => response.json()).then(data => {
-      setRugsBalance((data.rugs));
-      setRichesBalance((data.riches));
 
-      const odds1 = data.rugs / 1000000;
-      const odds2 = data.riches / 1000000;
-      setRugsOdds(odds1.toFixed(0));
-      setRichesOdds(odds2.toFixed(0));
-    });
+    if (data !== undefined && data[0].result !== undefined)
+      setRugsBalance(Number(formatEther(data[0]?.result)));
+    else setRugsBalance(0);
+    if (data !== undefined && data[1].result !== undefined)
+      setRichesBalance(Number(formatEther(data[1]?.result)));
+    else setRichesBalance(0);
 
-    return () => {
-      mounted.current = false;
-    };
-  }, [])
+  }, [data]);
+
+  function getOdds(balance: number) {
+    const odds = balance / 1000000;
+    return odds.toFixed(0);
+  }
 
   useEffect(() => {
     fetch("/api/get-latest-round", { cache: 'no-store' }).then(response => response.json()).then(data => {
@@ -131,9 +147,9 @@ export default function Home() {
           <div className="bg-white/10 w-fit mx-auto py-2 px-4 rounded-lg mt-8 mb-4 text-center flex flex-col">
             <div className="text-2xl xs:text-3xl text-white uppercase">Betting Odds</div>
             <div className="flex flex-row text-2xl xs:text-3xl mx-auto align-middle">
-              <div className="text-red-600 my-auto">{rugsOdds}</div>
+              <div className="text-red-600 my-auto">{getOdds(rugsBalance)}</div>
               <div className="px-2  my-auto">:</div>
-              <div className="text-yellow-400  my-auto">{richesOdds}</div>
+              <div className="text-yellow-400  my-auto">{getOdds(richesBalance)}</div>
             </div>
 
           </div>
