@@ -44,7 +44,7 @@ export default function Team({ name, ticker, ca, pair, wallet, img, balance, win
                 className="overflow-hidden rounded-xl p-1 mx-auto my-4 w-full h-auto"
                 width={40}
                 height={40}
-                priority
+                unoptimized
             />
             <div className="flex flex-col justify-center mx-auto">
                 <div className="mx-auto mt-2 text-xl uppercase">Total wins: {wins}</div>
